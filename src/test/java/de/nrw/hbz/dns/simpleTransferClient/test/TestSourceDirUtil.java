@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.junit.*;
 
-import de.nrw.hbz.dns.simpleTransferClient.fileUtil.FileUtils;
+import de.nrw.hbz.dns.simpleTransferClient.fileUtil.SourceDirUtil;
 import de.nrw.hbz.dns.simpleTransferClient.util.Configuration;
 
 /**
  * @author aquast
  *
  */
-public class TestFileUtils {
+public class TestSourceDirUtil {
 
-	private static Logger log = Logger.getLogger(TestFileUtils.class);
+	private static Logger log = Logger.getLogger(TestSourceDirUtil.class);
 
 	private void setTestConfiguration(){
 		Configuration.setProperty("sourcedir", System.getProperty("user.dir") 
@@ -32,7 +32,7 @@ public class TestFileUtils {
 	public void testFindSips(){
 		setTestConfiguration();
 		System.out.println(Configuration.getSourceDir());
-		FileUtils fUtils = new FileUtils();
+		SourceDirUtil fUtils = new SourceDirUtil();
 		ArrayList<String> fileNameList = fUtils.findSips();
 		System.out.println(fileNameList.size());
 		assertTrue("fails to find sourceDir for testing", new File(Configuration.getSourceDir()).isDirectory());

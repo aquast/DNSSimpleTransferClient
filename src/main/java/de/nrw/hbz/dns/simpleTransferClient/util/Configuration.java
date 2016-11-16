@@ -75,6 +75,10 @@ public abstract class Configuration {
 		return confProp.getProperty("sourcedir");
 	}
 	
+	public static String getMetadataDir(){
+		return confProp.getProperty("metadatadir");
+	}
+	
 	public static String getTargetDir(){
 		return confProp.getProperty("targetdir");
 	}

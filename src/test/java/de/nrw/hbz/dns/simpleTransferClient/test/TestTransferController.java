@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 import org.junit.*;
 
 import de.nrw.hbz.dns.simpleTransferClient.controller.TransferController;
-import de.nrw.hbz.dns.simpleTransferClient.fileUtil.FileUtils;
+import de.nrw.hbz.dns.simpleTransferClient.fileUtil.SourceDirUtil;
 import de.nrw.hbz.dns.simpleTransferClient.util.Configuration;
 
 /**
@@ -27,13 +27,20 @@ public class TestTransferController {
 		Configuration.setProperty("sourcedir", System.getProperty("user.dir") 
 				+ "/src/test/resources/sourcedir/");
 		
+		// dummy Api-Config
+		Configuration.setProperty("apiprotocol", "https");
+		Configuration.setProperty("apihost", "www.q-terra.de");
+		Configuration.setProperty("apiendpoint", "");
+		Configuration.setProperty("apiuser", "user");
+		Configuration.setProperty("apipasswd", "xxxxx");
+
 	}
 	
 	@Test
 	public void testGetUrnFromFileName(){
 		setTestConfiguration();
 		TransferController controller = new TransferController();
-		controller.createSipObjects();
+		controller.createSipObjectPresentation();
 		
 	}
 }

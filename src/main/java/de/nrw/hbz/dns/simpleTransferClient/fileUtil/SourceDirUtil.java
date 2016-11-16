@@ -15,9 +15,9 @@ import de.nrw.hbz.dns.simpleTransferClient.util.Configuration;
  * @author aquast
  *
  */
-public class FileUtils {
+public class SourceDirUtil {
 	
-	private static Logger log = Logger.getLogger(FileUtils.class);
+	private static Logger log = Logger.getLogger(SourceDirUtil.class);
 
 	private String[] suffixes = {".zip", ".tar", ".tgz"}; 
 	
