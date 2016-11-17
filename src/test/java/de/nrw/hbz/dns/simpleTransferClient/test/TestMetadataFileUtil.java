@@ -59,6 +59,7 @@ public class TestMetadataFileUtil {
 			String sipFileName = it.next();
 			String packageName = sipFileName.replaceAll(".tar|.zip|.tgz", "");
 			String[] sipSlices = packageName.split("_");
+			cField.setSipPackageName(packageName);
 			
 			if (sipSlices[0].startsWith("urn")){
 				cField.setSipUrn(sipSlices[0].replaceAll("\\+", ":"));

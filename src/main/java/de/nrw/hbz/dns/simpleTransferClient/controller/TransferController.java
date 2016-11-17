@@ -12,6 +12,7 @@ import java.util.Iterator;
 import org.apache.log4j.Logger;
 
 import de.nrw.hbz.dns.simpleTransferClient.apiUtil.JsonClient;
+import de.nrw.hbz.dns.simpleTransferClient.fileUtil.MetadataFileUtil;
 import de.nrw.hbz.dns.simpleTransferClient.fileUtil.SourceDirUtil;
 import de.nrw.hbz.dns.simpleTransferClient.sipController.Sip;
 import de.nrw.hbz.dns.simpleTransferClient.sipController.Sip.SipFactory;
@@ -41,11 +42,11 @@ public class TransferController {
 		Iterator<ControllerFields> sit = sipState.iterator();
 		while (sit.hasNext()){
 			ControllerFields contField = sit.next();
-			String className = "Sip" + contField.getSipType();
+			String className = "Sip" + contField.getSipType() + contField.getSipState();
 			Sip sip = SipFactory.getInstance(className);
 			log.info(className);
 			sip.setControllerFields(contField);
-			log.info(sip.getControllerFields().getSipUrn());
+			log.debug(sip.getControllerFields().getSipUrn());
 		}
 				
 	}
@@ -60,12 +61,15 @@ public class TransferController {
 	 */
 	private ControllerFields collectSipControllerFields(String sipFileName){
 		ControllerFields cField = new ControllerFields();
+		cField.setSipFileName(sipFileName);
 		String sipUrn = null;
 		String pattern = "gen\\d+";
 		String packageName = sipFileName.replaceAll(".tar|.zip|.tgz", "");
 		log.debug(packageName);
+		cField.setSipPackageName(packageName);
 		String[] sipSlices = packageName.split("_");
 		
+		// package files must start with the urn ! 
 		if (sipSlices[0].startsWith("urn")){
 			sipUrn = sipSlices[0].replaceAll("\\+", ":");
 			cField.setSipUrn(sipUrn);
@@ -78,6 +82,12 @@ public class TransferController {
 			jClient.performApiPostRequest();
 		} catch (IOException e) {
 			log.error(e);
+		}
+		
+		if (new MetadataFileUtil().mdFileExists(cField.getSipPackageName())){
+			cField.setSipState(cField.TO_TRANSFER);
+		} else {
+			
 		}
 		
 

@@ -9,14 +9,13 @@ import org.apache.log4j.Logger;
  * @author aquast
  *
  */
-public class SipMasterTransferred extends Sip implements SipAction{
+public class SipMasterTransferred extends Sip{
 
-	private static Logger log = Logger.getLogger(SipMasterTransferred.class);
+	public SipMasterTransferred(){
 
-	public void performRelatedAction() {
-		// TODO Auto-generated method stub
-		
+		this.setRelatedActionBehavior(new TransferCompleted());
 	}
+	private static Logger log = Logger.getLogger(SipMasterTransferred.class);
 
 	
 }

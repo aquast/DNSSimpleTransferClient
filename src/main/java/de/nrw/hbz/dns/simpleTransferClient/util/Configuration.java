@@ -79,9 +79,20 @@ public abstract class Configuration {
 		return confProp.getProperty("metadatadir");
 	}
 	
+	public static String getTransferHost(){
+		return confProp.getProperty("transferhost");
+	}
+
+	public static String getTransferUser(){
+		return confProp.getProperty("transferuser");
+	}
+	
+	public static String getTransferPasswd(){
+		return confProp.getProperty("transferpasswd");
+	}
+	
 	public static String getTargetDir(){
 		return confProp.getProperty("targetdir");
 	}
-
 	
 }

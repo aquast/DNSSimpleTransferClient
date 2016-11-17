@@ -13,12 +13,22 @@ import de.nrw.hbz.dns.simpleTransferClient.controller.ControllerFields;
  */
 public class Sip {
 	protected Sip(){
-		
+	
 	}
 	
 	private static Logger log = Logger.getLogger(Sip.class);
 	private ControllerFields controllerFields = null;
-
+	
+	private SipActionBehavior relatedActionBehavior = null;
+	
+	public void performRelatedAction(){
+		relatedActionBehavior.relatedAction(controllerFields);
+	}
+	
+	public void setRelatedActionBehavior(SipActionBehavior relatedBehavior){
+		this.relatedActionBehavior = relatedBehavior; 
+		
+	}
 	
 	public static class SipFactory{
 

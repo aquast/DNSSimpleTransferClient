@@ -1,0 +1,37 @@
+h1. About
+
+DNSSimpleTransferClient is a Java Client for the automated SIP transfer into a DNS Node Server. Foremost at this early stage it reimplements the replicateSIP.sh functionalities (see DNSScripts, https://github.com/aquast/DNSScripts). 
+
+h1. Prerequisites
+
+* Java 1.7 
+* maven
+* rsync
+* ssh
+
+
+h1. Installation 
+
+h2. From sources
+
+# Checkout code from github repository. git clone https://github.com/aquast/DNSSimpleTransferClient.git
+# step into the newly created directory. cd DNSSimpleTransferClient
+# Build with maven: mvn clean package
+# Copy /target/etc/SimpleTransferClient.properties to home/userdir/etc/
+# Edit SimpleTransferClient.properties to your configuration, accordingly
+
+Run from directory DNSSimpleTransferClient/target with java -jar simpleTransferClient-VERSION.jar
+
+h1. Releases
+
+0.0.1-SNAPSHOT
+
+h1. Status
+
+before alpha
+-
+
+h1. License
+
+Apache License  Version 2.0, January 2004  http://www.apache.org/licenses/
+Copyright 2012 Hochschulbibliothekszentrum des Landes Nordrhein-Westfalen (http://www.hbz-nrw.de)

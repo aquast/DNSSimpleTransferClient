@@ -3,15 +3,7 @@
  */
 package de.nrw.hbz.dns.simpleTransferClient.fileUtil;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FilenameFilter;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Properties;
-
 import org.apache.log4j.Logger;
 
 import de.nrw.hbz.dns.simpleTransferClient.controller.ControllerFields;
@@ -27,9 +19,9 @@ public class MetadataFileUtil {
 	
 	private String suffix = ".properties";
 
-	public boolean mdFileExists(String urn){
+	public boolean mdFileExists(String packageName){
 		boolean mdFileExists = false;
-		String fileName = Configuration.getMetadataDir() + urn + suffix;
+		String fileName = Configuration.getMetadataDir() + packageName + suffix;
 		if (new File(fileName).exists() && new File(fileName).canRead()){
 			mdFileExists = true;
 		}
@@ -37,21 +29,9 @@ public class MetadataFileUtil {
 		
 	}
 	
+	//TODO: method not required anymore? only for junit: maybe change unit test?
 	public void writeMdFile(ControllerFields cFields){
-		persistMdFile(cFields.getControllerFieldsProperties());
+		cFields.writeControllerFields();
 	}
 	
-	private void persistMdFile(Properties sipProps){
-		try{
-			File mdFile = new File(Configuration.getMetadataDir() + sipProps.getProperty("urn") + suffix);
-			FileOutputStream fos;
-			fos = new FileOutputStream(mdFile);
-			BufferedOutputStream bos = new BufferedOutputStream(fos);
-			sipProps.store(bos, "MD File for Package related to " + sipProps.getProperty("urn"));
-
-		} catch (Exception e) {
-			log.error(e);
-		}
-
-	}
 }
